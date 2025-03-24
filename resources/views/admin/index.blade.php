@@ -153,7 +153,7 @@
     <p class="menu-label">Examples</p>
     <ul class="menu-list">
       <li class="--set-active-tables-html">
-        <a href="tables.html">
+        <a href="{{ route('admin.category.index') }}">
           <span class="icon"><i class="mdi mdi-table"></i></span>
           <span class="menu-item-label">Categorias</span>
         </a>
