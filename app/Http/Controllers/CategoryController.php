@@ -30,10 +30,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->categoryName;
-        $category->status = $request->categoryStatus;
-        $category->save();
+        $validatedData = $request->validate([
+            'categoryName' => 'required',
+            'categoryStatus' => 'required'
+        ]);
+
+        Category::create([
+            'name' => $validatedData['categoryName'],
+            'status' => $validatedData['categoryStatus']
+        ]);
 
         return redirect()->route('admin.category.index');   
     }

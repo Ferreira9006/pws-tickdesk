@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('content')
-  <a href="{{ route('admin.category.create') }}" class="button blue">Nova Categoria</a>
+  <a href="{{ route('admin.category.create') }}" class="crmb-4 button blue">Nova Categoria</a>
   
   <div class="card has-table">
     <header class="card-header">
