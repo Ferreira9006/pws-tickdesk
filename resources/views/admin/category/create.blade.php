@@ -14,14 +14,15 @@
       <div class="field">
         <label class="label">Nome</label>
         <div class="control">
-          <input class="input" type="text" name="categoryName" placeholder="Exemplo: problemas com a impressora">
+          <input class="input" type="text" name="categoryName" required>
         </div>
       </div>
       <div class="field">
         <label class="label">Estado</label>
         <div class="control">
           <div class="select">
-            <select name="categoryStatus">
+            <select name="categoryStatus" required>
+              <option value="">Selecione o estado</option>
               <option value="active">Ativo</option>
               <option value="inactive">Inativo</option>
             </select>

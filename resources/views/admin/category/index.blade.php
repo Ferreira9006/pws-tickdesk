@@ -36,9 +36,13 @@
             </td>
             <td class="actions-cell">
               <div class="buttons right nowrap">
-                <button class="button small blue --jb-modal" data-target="update-modal" type="button">
+
+                <a href="{{ route('admin.category.show', $category->id) }}" class="button small blue --jb-modal" data-target="update-modal" type="button">
                   <span class="icon"><i class="mdi mdi-eye"></i></span>
-                </button>
+                </a>
+                <a href="#" class="button small blue --jb-modal" type="button">
+                  <span class="icon"><i class="mdi mdi-pencil"></i></span>
+                </a>
                 <button class="button small red --jb-modal" data-target="delete-modal" type="button">
                   <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                 </button>

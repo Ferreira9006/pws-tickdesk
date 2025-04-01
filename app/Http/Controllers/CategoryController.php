@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
+use function Laravel\Prompts\error;
+
 class CategoryController extends Controller
 {
     /**
@@ -30,6 +32,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        /*
+        * 
+        * Opção do professor para criar o objeto Category
+        *
+        
+        $category = new Category();
+        $category->name = $request->name;
+        $category->status = $request->status;
+        $category->save(); */
+
         $validatedData = $request->validate([
             'categoryName' => 'required',
             'categoryStatus' => 'required'
@@ -48,7 +60,12 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        if ($category = Category::find($id))
+        {
+            return view('admin.category.show',['category' => $category]);
+        }
+        
+        abort(404);
     }
 
     /**
