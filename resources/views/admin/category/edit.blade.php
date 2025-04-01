@@ -9,12 +9,13 @@
     </p>
   </header>
   <div class="card-content">
-    <form method="POST" action="{{ route('admin.category.store') }}">
+    <form method="POST" action="{{ route('admin.category.update', $category->id) }}">
       @csrf
+      @method('PUT')
       <div class="field">
         <label class="label">Nome</label>
         <div class="control">
-          <input class="input" type="text" name="categoryName" required>
+          <input class="input" type="text" name="categoryName" value="{{ $category->name }}" required>
         </div>
       </div>
       <div class="field">
@@ -23,8 +24,8 @@
           <div class="select">
             <select name="categoryStatus" required>
               <option value="">Selecione o estado</option>
-              <option value="active">Ativo</option>
-              <option value="inactive">Inativo</option>
+              <option value="active" {{ $category->status == 'active' ? 'selected' : '' }}>Ativo</option>
+              <option value="inactive" {{ $category->status == 'inactive' ? 'selected' : '' }}>Inativo</option>
             </select>
           </div>
         </div>

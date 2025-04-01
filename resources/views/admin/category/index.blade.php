@@ -40,7 +40,7 @@
                 <a href="{{ route('admin.category.show', $category->id) }}" class="button small blue --jb-modal" data-target="update-modal" type="button">
                   <span class="icon"><i class="mdi mdi-eye"></i></span>
                 </a>
-                <a href="#" class="button small blue --jb-modal" type="button">
+                <a href="{{ route('admin.category.edit', $category->id) }}" class="button small blue --jb-modal" type="button">
                   <span class="icon"><i class="mdi mdi-pencil"></i></span>
                 </a>
                 <button class="button small red --jb-modal" data-target="delete-modal" type="button">
@@ -92,7 +92,7 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button --jb-modal-close">Cancelar</button>
-        <form action="{{ route('admin.category.delete', $category->id) }}" method="post">
+        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post">
           @csrf
           @method('DELETE')
         <button class="button blue --jb-modal-close">Confirmar</button>
