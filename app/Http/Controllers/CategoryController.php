@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();  
+        $categories = Category::get();
 
         return view('admin.category.index', ['categories' => $categories]);
     }
@@ -33,10 +33,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         /*
-        * 
+        *
         * Opção do professor para criar o objeto Category
         *
-        
+
         $category = new Category();
         $category->name = $request->name;
         $category->status = $request->status;
@@ -52,7 +52,7 @@ class CategoryController extends Controller
             'status' => $validatedData['categoryStatus']
         ]);
 
-        return redirect()->route('admin.category.index');   
+        return redirect()->route('admin.category.index');
     }
 
     /**
@@ -64,7 +64,7 @@ class CategoryController extends Controller
         {
             return view('admin.category.show',['category' => $category]);
         }
-        
+
         abort(404);
     }
 
