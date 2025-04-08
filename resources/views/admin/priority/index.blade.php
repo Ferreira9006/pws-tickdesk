@@ -75,11 +75,13 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button --jb-modal-close">Cancelar</button>
-        <form action="{{ route('admin.priority.destroy', $priority->id) }}" method="post">
-          @csrf
-          @method('DELETE')
-        <button class="button blue --jb-modal-close">Confirmar</button>
-        </form>
+        @isset($priority)
+          <form action="{{ route('admin.priority.destroy', $priority->id) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button class="button blue --jb-modal-close">Confirmar</button>
+          </form>
+        @endisset
       </footer>
     </div>
   </div>

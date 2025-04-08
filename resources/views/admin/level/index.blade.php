@@ -1,15 +1,15 @@
 @extends('admin.index')
 
 @section('content')
-  <a href="{{ route('admin.category.create') }}" class="crmb-4 button blue">Nova Categoria</a>
+  <a href="{{ route('admin.level.create') }}" class="crmb-4 button blue">Novo nível de suporte</a>
   
   <div class="card has-table">
     <header class="card-header">
       <p class="card-header-title">
         <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-        Categorias
+        Níveis de Suporte
       </p>
-      <a href="{{ route('admin.category.index') }}" class="card-header-icon">
+      <a href="{{ route('admin.level.index') }}" class="card-header-icon">
         <span class="icon"><i class="mdi mdi-reload"></i></span>
       </a>
     </header>
@@ -24,23 +24,23 @@
         </tr>
         </thead>
         <tbody>
-          @foreach ($categories as $category)
+          @foreach ($levels as $level)
           <tr>
-            <td data-label="Name">{{ $category->name }}</td>
-            <td data-label="Status">{{ ucfirst($category->status) }}</td>
+            <td data-label="Name">{{ $level->name }}</td>
+            <td data-label="Status">{{ ucfirst($level->status) }}</td>
             <td data-label="Created">
-              <small class="text-gray-500" title="Oct 25, 2021">{{ $category->created_at }}</small>
+              <small class="text-gray-500" title="Oct 25, 2021">{{ $level->created_at }}</small>
             </td>
             <td data-label="Updated">
-              <small class="text-gray-500" title="Oct 25, 2021">{{ $category->updated_at }}</small>
+              <small class="text-gray-500" title="Oct 25, 2021">{{ $level->updated_at }}</small>
             </td>
             <td class="actions-cell">
               <div class="buttons right nowrap">
 
-                <a href="{{ route('admin.category.show', $category->id) }}" class="button small blue --jb-modal" data-target="update-modal" type="button">
+                <a href="{{ route('admin.level.show', $level->id) }}" class="button small blue --jb-modal" data-target="update-modal" type="button">
                   <span class="icon"><i class="mdi mdi-eye"></i></span>
                 </a>
-                <a href="{{ route('admin.category.edit', $category->id) }}" class="button small blue --jb-modal" type="button">
+                <a href="{{ route('admin.level.edit', $level->id) }}" class="button small blue --jb-modal" type="button">
                   <span class="icon"><i class="mdi mdi-pencil"></i></span>
                 </a>
                 <button class="button small red --jb-modal" data-target="delete-modal" type="button">
@@ -75,13 +75,13 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button --jb-modal-close">Cancelar</button>
-        @isset($category)
-          <form action="{{ route('admin.category.destroy', $category->id) }}" method="post">
-            @csrf
-            @method('DELETE')
-            <button class="button blue --jb-modal-close">Confirmar</button>
-          </form>
-        @endisset
+        @isset($level)
+        <form action="{{ route('admin.level.destroy', $level->id) }}" method="post">
+          @csrf
+          @method('DELETE')
+          <button class="button blue --jb-modal-close">Confirmar</button>
+        </form>
+        @endif
       </footer>
     </div>
   </div>

@@ -165,9 +165,9 @@
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="profile.html">
+        <a href="{{ route ('admin.level.index') }}">
           <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-          <span class="menu-item-label">Profile</span>
+          <span class="menu-item-label">Níveis de Suporte</span>
         </a>
       </li>
       <li>
