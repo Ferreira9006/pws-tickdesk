@@ -9,20 +9,33 @@
     </p>
   </header>
   <div class="card-content">
+    @if($errors->any())
+      <div class="notification red">
+        <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
+          <div>
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+      </div>
+    @endif
     <form method="POST" action="{{ route('admin.category.update', $category->id) }}">
       @csrf
       @method('PUT')
       <div class="field">
         <label class="label">Nome</label>
         <div class="control">
-          <input class="input" type="text" name="categoryName" value="{{ $category->name }}" required>
+          <input class="input" type="text" name="name" value="{{ $category->name }}" required>
         </div>
       </div>
       <div class="field">
         <label class="label">Estado</label>
         <div class="control">
           <div class="select">
-            <select name="categoryStatus" required>
+            <select name="status  " required>
               <option value="">Selecione o estado</option>
               <option value="active" {{ $category->status == 'active' ? 'selected' : '' }}>Ativo</option>
               <option value="inactive" {{ $category->status == 'inactive' ? 'selected' : '' }}>Inativo</option>

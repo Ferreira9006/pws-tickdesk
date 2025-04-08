@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Foundation\Http\FormRequest;
 
 use function Laravel\Prompts\error;
 
@@ -43,15 +44,15 @@ class CategoryController extends Controller
         $category->save(); */
 
         $validatedData = $request->validate([
-            'categoryName' => 'required',
-            'categoryStatus' => 'required'
+            'name' => 'required|max:255|min:3|unique:categories',
+            'status' => 'required|in:active,inactive'
         ]);
 
         Category::create([
-            'name' => $validatedData['categoryName'],
-            'status' => $validatedData['categoryStatus']
+            'name' => $validatedData['name'],
+            'status' => $validatedData['status']
         ]);
-
+        
         return redirect()->route('admin.category.index');
     }
 
@@ -60,9 +61,8 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        if ($category = Category::find($id))
-        {
-            return view('admin.category.show',['category' => $category]);
+        if ($category = Category::find($id)) {
+            return view('admin.category.show', ['category' => $category]);
         }
 
         abort(404);
@@ -74,7 +74,7 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.category.edit',['category' => $category]);
+        return view('admin.category.edit', ['category' => $category]);
     }
 
     /**
@@ -83,17 +83,15 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $validatedData = $request->validate([
-            'categoryName' => 'required',
-            'categoryStatus' => 'required'
+            'name' => 'required|max:255|min:3|unique:categories',
+            'status' => 'required|in:active,inactive'
         ]);
 
         $category = Category::findOrFail($id);
-
-        $category->update([
-            'name' => $validatedData['categoryName'],
-            'status' => $validatedData['categoryStatus']
+        Category::update([
+            'name' => $validatedData['name'],
+            'status' => $validatedData['status']
         ]);
-
         return redirect()->route('admin.category.index');
     }
 
