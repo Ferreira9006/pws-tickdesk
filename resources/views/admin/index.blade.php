@@ -159,9 +159,9 @@
         </a>
       </li>
       <li class="--set-active-forms-html">
-        <a href="forms.html">
+        <a href="{{ route('admin.priority.index') }}">
           <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-          <span class="menu-item-label">Forms</span>
+          <span class="menu-item-label">Prioridades</span>
         </a>
       </li>
       <li class="--set-active-profile-html">

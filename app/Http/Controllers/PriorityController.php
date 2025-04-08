@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Priority;
 use Illuminate\Http\Request;
-use App\Models\Category;
-use Illuminate\Foundation\Http\FormRequest;
 
-use function Laravel\Prompts\error;
-
-class CategoryController extends Controller
+class PriorityController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::get();
+        $priorities = Priority::get();
 
-        return view('admin.category.index', ['categories' => $categories]);
+        return view('admin.priority.index', ['priorities' => $priorities]);
     }
 
     /**
@@ -25,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.priority.create');
     }
 
     /**
@@ -35,25 +32,25 @@ class CategoryController extends Controller
     {
         /*
         *
-        * Opção do professor para criar o objeto Category
+        * Opção do professor para criar o objeto Priority
         *
 
-        $category = new Category();
-        $category->name = $request->name;
-        $category->status = $request->status;
-        $category->save(); */
+        $priority = new Priority();
+        $priority->name = $request->name;
+        $priority->status = $request->status;
+        $priority->save(); */
 
         $validatedData = $request->validate([
-            'name' => 'required|max:255|min:3|unique:categories',
+            'name' => 'required|max:255|min:3|unique:priorities',
             'status' => 'required|in:active,inactive'
         ]);
 
-        Category::create([
+        Priority::create([
             'name' => $validatedData['name'],
             'status' => $validatedData['status']
         ]);
         
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.priority.index');
     }
 
     /**
@@ -61,8 +58,8 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        if ($category = Category::find($id)) {
-            return view('admin.category.show', ['category' => $category]);
+        if ($priority = Priority::find($id)) {
+            return view('admin.priority.show', ['priority' => $priority]);
         }
 
         abort(404);
@@ -73,8 +70,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $category = Category::findOrFail($id);
-        return view('admin.category.edit', ['category' => $category]);
+        $priority = Priority::findOrFail($id);
+        return view('admin.priority.edit', ['priority' => $priority]);
     }
 
     /**
@@ -83,16 +80,17 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255|min:3|unique:categories',
+            'name' => 'required|max:255|min:3|unique:priorities',
             'status' => 'required|in:active,inactive'
         ]);
 
-        $category = Category::findOrFail($id);
-        $category->update([
+        $priority = Priority::findOrFail($id);
+        
+        $priority->update([
             'name' => $validatedData['name'],
             'status' => $validatedData['status']
         ]);
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.priority.index');
     }
 
     /**
@@ -100,9 +98,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        $categories = Category::findorFail($id);
-        $categories->delete();
+        $priorities = Priority::findorFail($id);
+        $priorities->delete();
 
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.priority.index');
     }
 }

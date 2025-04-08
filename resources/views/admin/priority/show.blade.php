@@ -5,7 +5,7 @@
   <header class="card-header">
     <p class="card-header-title">
       <span class="icon"><i class="mdi mdi-ballot"></i></span>
-      Ver Categoria
+      Ver Prioridade
     </p>
   </header>
   <div class="card-content">
@@ -17,7 +17,7 @@
             type="text" 
             name="name" 
             placeholder="Exemplo: problemas com a impressora" 
-            value="{{ $category->name }}"
+            value="{{ $priority->name }}"
             disabled>
         </div>
     </div>
@@ -25,10 +25,10 @@
         <label class="label">Estado</label>
         <div class="control">
             <div class="select">
-            <select name="status" value="{{ $category->status }}" disabled>
+            <select name="status" value="{{ $priority->status }}" disabled>
                 <option value="">Selecione o estado</option>
-                <option value="active" {{ $category->status == 'active'? 'selected' : '' }} >Ativo</option>
-                <option value="inactive" {{ $category->status == 'inactive'? 'selected' : '' }}>Inativo</option>
+                <option value="active" {{ $priority->status == 'active'? 'selected' : '' }} >Ativo</option>
+                <option value="inactive" {{ $priority->status == 'inactive'? 'selected' : '' }}>Inativo</option>
             </select>
             </div>
         </div>
@@ -36,7 +36,7 @@
 
     <div class="field grouped">
     <div class="control">
-        <a href="{{ route('admin.category.index') }}" type="submit" class="button green">
+        <a href="{{ route('admin.priority.index') }}" type="submit" class="button green">
         Voltar
         </a>
     </div>

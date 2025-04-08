@@ -5,7 +5,7 @@
   <header class="card-header">
     <p class="card-header-title">
       <span class="icon"><i class="mdi mdi-ballot"></i></span>
-      Inserir Categoria
+      Inserir Prioridade
     </p>
   </header>
   <div class="card-content">
@@ -22,13 +22,13 @@
         </div>
       </div>
     @endif
-    <form method="POST" action="{{ route('admin.category.update', $category->id) }}">
+    <form method="POST" action="{{ route('admin.priority.update', $priority->id) }}">
       @csrf
       @method('PUT')
       <div class="field">
         <label class="label">Nome</label>
         <div class="control">
-          <input class="input" type="text" name="name" value="{{ $category->name }}" required>
+          <input class="input" type="text" name="name" value="{{ $priority->name }}" required>
         </div>
       </div>
       <div class="field">
@@ -37,8 +37,8 @@
           <div class="select">
             <select name="status" required>
               <option value="">Selecione o estado</option>
-              <option value="active" {{ $category->status == 'active' ? 'selected' : '' }}>Ativo</option>
-              <option value="inactive" {{ $category->status == 'inactive' ? 'selected' : '' }}>Inativo</option>
+              <option value="active" {{ $priority->status == 'active' ? 'selected' : '' }}>Ativo</option>
+              <option value="inactive" {{ $priority->status == 'inactive' ? 'selected' : '' }}>Inativo</option>
             </select>
           </div>
         </div>
