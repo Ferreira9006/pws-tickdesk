@@ -20,7 +20,7 @@ Tickdesk will allow users to create, manage, and respond to support tickets thro
 To run Tickdesk locally, follow these steps:
 
 ```bash
-git clone https://github.com/yourusername/tickdesk.git
+git clone https://github.com/Ferreira9006/pws-tickdesk.git
 cd tickdesk
 composer install
 cp .env.example .env
