@@ -22,7 +22,7 @@
         </div>
       </div>
     @endif
-    <form method="POST" action="{{ route('admin.category.update', $category->id) }}">
+    <form method="POST" action="{{ route('category.update', $category->id) }}">
       @csrf
       @method('PUT')
       <div class="field">

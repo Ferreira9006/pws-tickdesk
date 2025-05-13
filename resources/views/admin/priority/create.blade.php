@@ -23,7 +23,7 @@
       </div>
     @endif
 
-    <form method="POST" action="{{ route('admin.priority.store') }}">
+    <form method="POST" action="{{ route('priority.store') }}">
       @csrf
       <div class="field">
         <label class="label">Nome</label>

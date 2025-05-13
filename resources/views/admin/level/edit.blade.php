@@ -22,7 +22,7 @@
         </div>
       </div>
     @endif
-    <form method="POST" action="{{ route('admin.level.update', $level->id) }}">
+    <form method="POST" action="{{ route('level.update', $level->id) }}">
       @csrf
       @method('PUT')
       <div class="field">

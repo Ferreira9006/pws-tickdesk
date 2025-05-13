@@ -53,7 +53,7 @@ class CategoryController extends Controller
             'status' => $validatedData['status']
         ]);
         
-        return redirect()->route('admin.category.index');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -92,7 +92,7 @@ class CategoryController extends Controller
             'name' => $validatedData['name'],
             'status' => $validatedData['status']
         ]);
-        return redirect()->route('admin.category.index');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -103,6 +103,6 @@ class CategoryController extends Controller
         $categories = Category::findorFail($id);
         $categories->delete();
 
-        return redirect()->route('admin.category.index');
+        return redirect()->route('category.index');
     }
 }

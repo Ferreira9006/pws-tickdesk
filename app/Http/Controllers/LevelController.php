@@ -50,7 +50,7 @@ class LevelController extends Controller
             'status' => $validatedData['status']
         ]);
         
-        return redirect()->route('admin.level.index');
+        return redirect()->route('level.index');
     }
 
     /**
@@ -90,7 +90,7 @@ class LevelController extends Controller
             'name' => $validatedData['name'],
             'status' => $validatedData['status']
         ]);
-        return redirect()->route('admin.level.index');
+        return redirect()->route('level.index');
     }
 
     /**
@@ -101,6 +101,6 @@ class LevelController extends Controller
         $levels = Level::findorFail($id);
         $levels->delete();
 
-        return redirect()->route('admin.level.index');
+        return redirect()->route('level.index');
     }
 }

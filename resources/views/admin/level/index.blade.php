@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('content')
-  <a href="{{ route('admin.level.create') }}" class="crmb-4 button blue">Novo nível de suporte</a>
+  <a href="{{ route('level.create') }}" class="crmb-4 button blue">Novo nível de suporte</a>
   
   <div class="card has-table">
     <header class="card-header">
@@ -9,7 +9,7 @@
         <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
         Níveis de Suporte
       </p>
-      <a href="{{ route('admin.level.index') }}" class="card-header-icon">
+      <a href="{{ route('level.index') }}" class="card-header-icon">
         <span class="icon"><i class="mdi mdi-reload"></i></span>
       </a>
     </header>
@@ -37,10 +37,10 @@
             <td class="actions-cell">
               <div class="buttons right nowrap">
 
-                <a href="{{ route('admin.level.show', $level->id) }}" class="button small blue --jb-modal" data-target="update-modal" type="button">
+                <a href="{{ route('level.show', $level->id) }}" class="button small blue --jb-modal" data-target="update-modal" type="button">
                   <span class="icon"><i class="mdi mdi-eye"></i></span>
                 </a>
-                <a href="{{ route('admin.level.edit', $level->id) }}" class="button small blue --jb-modal" type="button">
+                <a href="{{ route('level.edit', $level->id) }}" class="button small blue --jb-modal" type="button">
                   <span class="icon"><i class="mdi mdi-pencil"></i></span>
                 </a>
                 <button class="button small red --jb-modal" data-target="delete-modal" type="button">
@@ -76,7 +76,7 @@
       <footer class="modal-card-foot">
         <button class="button --jb-modal-close">Cancelar</button>
         @isset($level)
-        <form action="{{ route('admin.level.destroy', $level->id) }}" method="post">
+        <form action="{{ route('level.destroy', $level->id) }}" method="post">
           @csrf
           @method('DELETE')
           <button class="button blue --jb-modal-close">Confirmar</button>

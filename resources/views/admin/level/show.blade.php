@@ -36,7 +36,7 @@
 
     <div class="field grouped">
     <div class="control">
-        <a href="{{ route('admin.level.index') }}" type="submit" class="button green">
+        <a href="{{ route('level.index') }}" type="submit" class="button green">
         Voltar
         </a>
     </div>

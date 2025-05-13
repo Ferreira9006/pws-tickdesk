@@ -22,7 +22,7 @@
         </div>
       </div>
     @endif
-    <form method="POST" action="{{ route('admin.priority.update', $priority->id) }}">
+    <form method="POST" action="{{ route('priority.update', $priority->id) }}">
       @csrf
       @method('PUT')
       <div class="field">
