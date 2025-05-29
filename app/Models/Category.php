@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'status'];
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
+    }
+    
+    protected $fillable = ['name', 'status', 'level_id'];
 }

@@ -21,7 +21,8 @@ Route::resource('/admin/level', LevelController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Ticket Routes
-Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create');
-Route::post('/ticket/store', [TicketController::class, 'store'])->name('ticket.store');
+Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create')->middleware('auth');
+Route::post('/ticket/store', [TicketController::class, 'store'])->name('ticket.store')->middleware('auth');
+Route::get('/ticket/list', [TicketController::class, 'list'])->name('ticket.list')->middleware('auth');
 
 Auth::routes();

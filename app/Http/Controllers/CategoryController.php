@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Level;
 use Illuminate\Foundation\Http\FormRequest;
 
 use function Laravel\Prompts\error;
@@ -16,8 +17,15 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::get();
+        $levels = Level::get();
 
-        return view('admin.category.index', ['categories' => $categories]);
+        return view(
+            'admin.category.index', 
+            [
+                'categories' => $categories, 
+                'levels' => $levels,
+            ]
+        );
     }
 
     /**
@@ -25,7 +33,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        $levels = Level::get();
+        return view('admin.category.create', ['levels' => $levels]);
     }
 
     /**
@@ -33,24 +42,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-        *
-        * Opção do professor para criar o objeto Category
-        *
-
-        $category = new Category();
-        $category->name = $request->name;
-        $category->status = $request->status;
-        $category->save(); */
-
         $validatedData = $request->validate([
             'name' => 'required|max:255|min:3|unique:categories',
-            'status' => 'required|in:active,inactive'
+            'status' => 'required|in:active,inactive',
+            'level_id' => 'required|exists:levels,id'
         ]);
 
         Category::create([
             'name' => $validatedData['name'],
-            'status' => $validatedData['status']
+            'status' => $validatedData['status'],
+            'level_id' => $validatedData['level_id']
         ]);
         
         return redirect()->route('category.index');
@@ -62,7 +63,8 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         if ($category = Category::find($id)) {
-            return view('admin.category.show', ['category' => $category]);
+            $levels = Level::get();
+            return view('admin.category.show', ['category' => $category], ['levels' => $levels]);
         }
 
         abort(404);
@@ -74,7 +76,8 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.category.edit', ['category' => $category]);
+        $levels = Level::get();
+        return view('admin.category.edit', ['category' => $category, 'levels' => $levels]);
     }
 
     /**
@@ -84,13 +87,15 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255|min:3|unique:categories',
-            'status' => 'required|in:active,inactive'
+            'status' => 'required|in:active,inactive',
+            'level_id' => 'required|exists:levels,id'
         ]);
 
         $category = Category::findOrFail($id);
         $category->update([
             'name' => $validatedData['name'],
-            'status' => $validatedData['status']
+            'status' => $validatedData['status'],
+            'level_id' => $validatedData['level_id']
         ]);
         return redirect()->route('category.index');
     }

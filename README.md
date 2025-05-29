@@ -2,7 +2,7 @@
 
 **Tickdesk** is a Ticket Support System built with [Laravel](https://laravel.com/), aiming to help teams manage customer support requests in an organized and efficient way.
 
-⚠️ Tickdesk is currently under development. Features and documentation are being actively worked on.
+⚠️ Tickdesk is currently under development. This is a class project for the back-end web programming class.
 
 ## 📌 Overview
 

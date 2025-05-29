@@ -26,12 +26,10 @@ class TicketController extends Controller
     {
         $priorities = Priority::get();
         $categories = Category::get();
-        $levels = Level::get();
 
         return view('ticket.create', [
             'priorities' => $priorities, 
-            'categories' => $categories, 
-            'levels' => $levels
+            'categories' => $categories
         ]);
     }
 
@@ -45,7 +43,6 @@ class TicketController extends Controller
             'description' => 'required|max:1000|min:10',
             'priority_id' => 'required|exists:priorities,id',
             'category_id' => 'required|exists:categories,id',
-            'level_id' => 'required|exists:levels,id',
         ]);
     
         // Add additional data manually
@@ -53,7 +50,14 @@ class TicketController extends Controller
         $validatedData['status'] = 'open';
     
         Ticket::create($validatedData);
+        
         return redirect()->route('ticket.create');
+    }
+
+    public function list()
+    {
+        $tickets = Ticket::where('user_id', Auth::user()->id)->get();
+        return view('ticket.list', ['tickets' => $tickets]);
     }
 
     /**

@@ -1,4 +1,5 @@
 @extends('admin.index')
+
 @section('content')
 
 <div class="card mb-6">
@@ -29,6 +30,17 @@
                 <option value="">Selecione o estado</option>
                 <option value="active" {{ $category->status == 'active'? 'selected' : '' }} >Ativo</option>
                 <option value="inactive" {{ $category->status == 'inactive'? 'selected' : '' }}>Inativo</option>
+            </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Level</label>
+        <div class="control">
+            <div class="select">
+            <select name="level_id" value="{{ $category->level->id }}" disabled>
+                <option value="{{ $category->level->id }}">{{ $category->level->name }}</option>
             </select>
             </div>
         </div>
