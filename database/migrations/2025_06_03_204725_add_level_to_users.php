@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::disableForeignKeyConstraints();
+        Schema::disableForeignKeyConstraints();
 
-        Schema::table('categories', function (Blueprint $table) {
-            $table->foreignId('level_id')->constrained()->onDelete(('cascade'));
-            
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('level_id')->constrained()->nullable();
         });
+
         Schema::enableForeignKeyConstraints();
-        
     }
 
     /**
@@ -26,8 +25,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropForeign(['categories_level_id_foreign']);
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['users_level_id_foreign']);
             $table->dropColumn('level_id');
         });
     }
