@@ -24,5 +24,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create')->middleware('auth');
 Route::post('/ticket/store', [TicketController::class, 'store'])->name('ticket.store')->middleware('auth');
 Route::get('/ticket/list', [TicketController::class, 'list'])->name('ticket.list')->middleware('auth');
+Route::post('/ticket/delete/{id}', [TicketController::class, 'destroy'])->name('ticket.delete')->middleware('auth');
 
 Auth::routes();

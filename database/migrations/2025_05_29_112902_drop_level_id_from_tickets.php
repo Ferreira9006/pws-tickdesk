@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->dropForeign('tickets_level_id_foreign');
-            $table->dropColumn('level_id');
-            //
+            // Verifica se a coluna 'level_id' existe antes de tentar removê-la
+            if (Schema::hasColumn('tickets', 'level_id')) {
+                $table->dropForeign(['level_id']);
+                $table->dropColumn('level_id');
+            }
         });
     }
 
@@ -23,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tickets', function (Blueprint $table) {
-            //
-        });
+        //
     }
 };
